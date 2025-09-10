@@ -17,11 +17,12 @@
     },
     "HTMLeditor": {
       "type": "customField",
-      "customField": "plugin::ckeditor.CKEditor",
+      "customField": "plugin::ckeditor5.CKEditor",
       "options": {
         "preset": "defaultHtml"
       }
     }
   }
 }
+
 
