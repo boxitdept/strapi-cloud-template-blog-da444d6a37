@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_shared_test2s",
+  "info": {
+    "displayName": "test2",
+    "icon": "alien"
+  },
+  "options": {},
+  "attributes": {
+    "test3": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    }
+  },
+  "config": {}
+}

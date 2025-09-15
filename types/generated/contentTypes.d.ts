@@ -418,6 +418,7 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     HTMLeditor: Schema.Attribute.RichText &
+      Schema.Attribute.Required &
       Schema.Attribute.CustomField<
         'plugin::ckeditor5.CKEditor',
         {
