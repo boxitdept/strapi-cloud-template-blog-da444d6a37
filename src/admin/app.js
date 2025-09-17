@@ -1,5 +1,5 @@
 ﻿// app/src/admin/app.js
-import { setPluginConfig, defaultHtmlPreset } from '@_sh/strapi-plugin-ckeditor';
+import { setPluginConfig, defaultHtmlPreset, StrapiMediaLib, StrapiUploadAdapter  } from '@_sh/strapi-plugin-ckeditor';
 
 export default {
   register() {
@@ -8,11 +8,16 @@ const preset = {
   ...defaultHtmlPreset,
   editorConfig: {
     ...defaultHtmlPreset.editorConfig,
+        plugins: [
+      ...(defaultHtmlPreset.editorConfig.plugins || []),
+      StrapiMediaLib,
+      StrapiUploadAdapter,
+    ],
     toolbar: [
       'undo','redo','|','heading',
       '|','bold','italic','link',
       '|','bulletedList','numberedList','outdent','indent',
-      '|','blockQuote','insertTable','imageUpload',
+      '|','blockQuote','insertTable','imageUpload','strapiMediaLib', 
       '|','htmlEmbed','sourceEditing','fontFamily'
     ],
     fontFamily: { options: ['Acumin Pro, sans-serif'], supportAllValues: false },
