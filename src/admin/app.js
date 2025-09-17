@@ -1,8 +1,12 @@
-﻿// app/src/admin/app.js
+﻿﻿// app/src/admin/app.js
 import { setPluginConfig, defaultHtmlPreset, StrapiMediaLib, StrapiUploadAdapter  } from '@_sh/strapi-plugin-ckeditor';
 
 export default {
   register() {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = '/bp/css/strapi.css'; // was /bp/css/Common.css
+    document.head.appendChild(link);
     // Build a preset that keeps real HTML and shows Source.
 const preset = {
   ...defaultHtmlPreset,
@@ -20,10 +24,28 @@ const preset = {
       '|','blockQuote','insertTable','imageUpload','strapiMediaLib', 
       '|','htmlEmbed','sourceEditing','fontFamily'
     ],
+        heading: {
+      options: [
+        { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+        { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+        { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' },
+        { model: 'heading3', view: 'h3', title: 'Heading 3', class: 'ck-heading_heading3' },
+
+        // Here’s your custom tag
+        { 
+          model: 'marketingGuideHeader', 
+          view: { name: 'p', classes: 'marketing-guide-header' },
+          title: 'Marketing Guide Header',
+          class: 'ck-heading_marketingGuideHeader'
+        }
+      ]
+    },
     fontFamily: { options: ['Acumin Pro, sans-serif'], supportAllValues: false },
     htmlSupport: {
       allow: [
         { name: /.*/, attributes: true, classes: true, styles: true },
+        { name: /(p|h[1-6]|ul|ol|li|a|blockquote|table|thead|tbody|tr|th|td|figure|figcaption|span|div|code|pre|hr)/, attributes: true, classes: true, styles: true },
+        { name: 'p', classes: ['marketing-guide-header'] }, // whitelist your class
         { name: 'img', attributes: ['src','srcset','sizes','width','height','alt','loading','decoding','fetchpriority','class','style','data-*'] },
         { name: 'a',   attributes: ['href','target','rel','download','class','style','data-*'] },
         { name: 'iframe', attributes: ['src','allow','allowfullscreen','width','height','title','class','style'] }
@@ -32,7 +54,7 @@ const preset = {
         { name: 'script', attributes: true, classes: true, styles: true },
         { name: /.*/, attributes: [/^on.*/i] }
       ]
-    }
+    },
   },
   styles: ``
 };
@@ -69,7 +91,8 @@ const theme = {
     .ck-editor__main .ck-content h3 { font-size: 20px !important; line-height: 1.25 !important; font-weight: 700 !important; margin: 0 0 .5em !important; }
   `
 };
-
+    // let strapi.css be the source of truth — no extra overrides
+    defaultHtmlPreset.styles = ``;
 
     setPluginConfig({ presets: [preset], theme });
   },
