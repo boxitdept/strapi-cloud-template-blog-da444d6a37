@@ -49,15 +49,51 @@ export default {
 
         // Style plugin: add a button that applies your site class
         // Requires the `Style` plugin to be present in the build used by the @_sh preset.
-        style: {
-          definitions: [
-            {
-              name: 'Marketing Guide Header',
-              element: 'p',
-              classes: [ 'marketing-guide-header' ]
-            }
-          ]
-        },
+// Inside editorConfig:
+style: {
+  definitions: [
+    // Wrappers & sections
+    { name: 'Wrapper: Marketing Guide', element: 'div', classes: ['marketing-guide-wrapper'] },
+    { name: 'Section: Marketing',       element: 'div', classes: ['marketing-section'] },
+
+    // Typography
+    { name: 'Header: Marketing Guide',  element: 'p',   classes: ['marketing-guide-header'] },
+    { name: 'Text: Body',               element: 'p',   classes: ['marketing-guide-body'] },
+    { name: 'Text: Label',              element: 'span',classes: ['marketing-guide-label'] },
+    // Legacy alias so old content doesn’t cry
+    { name: 'Text: Label (legacy)',     element: 'span',classes: ['media-guide-label'] },
+
+    // Links
+    { name: 'Link: Marketing Link',     element: 'a',   classes: ['marketing-link'] },
+
+    // Lists
+    { name: 'List: Bulleted',           element: 'ul',  classes: ['marketing-guide-list'] },
+    { name: 'List: Table Bullets',      element: 'ul',  classes: ['marketing-guide-list-table'] },
+    { name: 'List: Ordered Steps',      element: 'ol',  classes: ['marketing-guide-steps'] },
+    { name: 'List: No Bullets',         element: 'ul',  classes: ['no-bullets'] },
+
+    // Indentation utilities (apply to blocks you select)
+    { name: 'Indent: Normal',           element: 'div', classes: ['indented'] },
+    { name: 'Indent: Large',            element: 'div', classes: ['indented-lg'] },
+    { name: 'Indent: None',             element: 'div', classes: ['no-indent'] },
+
+    // Columns
+    { name: 'Columns: Grid',            element: 'div', classes: ['marketing-guide-columns'] },
+
+    // Images
+    { name: 'Image: Standard',          element: 'img', classes: ['marketing-guide-image'] },
+    { name: 'Image: Narrow',            element: 'img', classes: ['marketing-guide-image-narrow'] },
+    { name: 'Image: Hero',              element: 'img', classes: ['marketing-guide-hero-image'] },
+    { name: 'Image: Resized (compat)',  element: 'img', classes: ['image_resized'] },
+
+    // Narrow container helper
+    { name: 'Container: mg-narrow',     element: 'div', classes: ['mg-narrow'] },
+
+    // Breadcrumb
+    { name: 'Breadcrumb',               element: 'div', classes: ['marketing-breadcrumb'] },
+  ]
+},
+
 
         // Fonts
         fontFamily: {
