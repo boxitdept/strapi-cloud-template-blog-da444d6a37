@@ -377,7 +377,7 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
   collectionName: 'articles';
   info: {
     description: 'Create your blog content';
-    displayName: 'Marketing Guide';
+    displayName: 'Articles';
     pluralName: 'articles';
     singularName: 'article';
   };

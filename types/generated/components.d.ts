@@ -60,23 +60,6 @@ export interface SharedSlider extends Struct.ComponentSchema {
   };
 }
 
-export interface SharedTest2 extends Struct.ComponentSchema {
-  collectionName: 'components_shared_test2s';
-  info: {
-    displayName: 'test2';
-    icon: 'alien';
-  };
-  attributes: {
-    test3: Schema.Attribute.RichText &
-      Schema.Attribute.CustomField<
-        'plugin::ckeditor5.CKEditor',
-        {
-          preset: 'defaultHtml';
-        }
-      >;
-  };
-}
-
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
@@ -85,7 +68,6 @@ declare module '@strapi/strapi' {
       'shared.rich-text': SharedRichText;
       'shared.seo': SharedSeo;
       'shared.slider': SharedSlider;
-      'shared.test2': SharedTest2;
     }
   }
 }
