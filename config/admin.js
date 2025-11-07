@@ -32,7 +32,7 @@ module.exports = ({ env }) => ({
               passReqToCallback: false,
             },
             (accessToken, refreshToken, params, _profile, done) => {
-              try {
+              try { console.log('[SSO][Entra] verify fired', { hasId: !!(params try {try { params.id_token) });
                 const claims = params?.id_token ? (jwt.decode(params.id_token) || {}) : {};
 
                 // Minimal debug so we can see what Entra sent; rate-limited to once per minute
