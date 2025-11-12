@@ -59,7 +59,7 @@ module.exports = ({ env }) => ({
               tokenURL: `https://login.microsoftonline.com/${env('AZURE_TENANT_ID')}/oauth2/v2.0/token`,
               clientID: env('AZURE_CLIENT_ID'),
               clientSecret: env('AZURE_CLIENT_SECRET'),
-              callbackURL: strapi.admin.services.passport.getStrategyCallbackURL('azure_ad_oauth2'),
+              callbackURL: `${env('ADMIN_URL')}/connect/azure_ad_oauth2/callback`,
               scope: ['openid', 'profile', 'email'],
               passReqToCallback: false,
               state: true, // CSRF protection
