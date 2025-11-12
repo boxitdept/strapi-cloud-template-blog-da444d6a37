@@ -2,8 +2,8 @@
 module.exports = [
   'strapi::errors',
 
-{ resolve: './src/middlewares/bpProxy' },
-
+  // keep your proxy
+  { resolve: './src/middlewares/bpProxy' },
 
   {
     name: 'strapi::security',
@@ -11,11 +11,29 @@ module.exports = [
       contentSecurityPolicy: {
         useDefaults: true,
         directives: {
+          // keep admin JS tight
           "script-src": ["'self'"],
-          "style-src": ["'self'", "'unsafe-inline'"],   // we inject a <link> to /bp/css/Common.css (same origin)
-          "font-src": ["'self'", "data:"],              // fonts now come from our origin via the proxy
-          "img-src": ["'self'", "data:"],
-          "connect-src": ["'self'"],
+
+          // you already rely on inline styles; leaving it enabled
+          "style-src": ["'self'", "'unsafe-inline'"],
+
+          // fonts coming from your origin or data URLs
+          "font-src": ["'self'", "data:"],
+
+          // allow your images, data URIs, and the Entra icon host
+          "img-src": ["'self'", "data:", "blob:", "learn.microsoft.com"],
+
+          // allow audio/video from self or data/blob (future-proof, harmless)
+          "media-src": ["'self'", "data:", "blob:"],
+
+          // let the admin talk to HTTPS endpoints (OAuth, APIs, telemetry, etc.)
+          "connect-src": ["'self'", "https:"],
+
+          // if you ever embed iframes (NetSuite forms, etc.), this keeps them working
+          "frame-src": ["'self'", "https:"],
+
+          // don’t force http→https upgrades in dev; avoids local loop issues
+          upgradeInsecureRequests: null,
         },
       },
     },
