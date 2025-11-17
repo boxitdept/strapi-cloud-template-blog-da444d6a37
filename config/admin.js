@@ -18,7 +18,7 @@ module.exports = ({ env }) => ({
               tokenURL: `https://login.microsoftonline.com/${env('AZURE_TENANT_ID')}/oauth2/v2.0/token`,
               clientID: env('AZURE_CLIENT_ID'),
               clientSecret: env('AZURE_CLIENT_SECRET'),
-              callbackURL: `${env('ADMIN_URL')}/connect/azure_ad_oauth2/callback`,
+              callbackURL: strapi.admin.services.passport.getStrategyCallbackURL('azure_ad_oauth2'),
               scope: ['openid', 'profile', 'email'],
               passReqToCallback: false,
               state: true,
@@ -28,35 +28,37 @@ module.exports = ({ env }) => ({
                 const claims = params?.id_token
                   ? jwt.decode(params.id_token) || {}
                   : {};
-
+                
                 console.log('=== AZURE CLAIMS DUMP ===');
                 console.log(JSON.stringify(claims, null, 2));
-
+                
                 const email =
                   claims.email ||
                   claims.preferred_username ||
                   claims.upn ||
                   claims.unique_name ||
                   null;
-
+                
                 if (!email) {
-                  console.log(
-                    'SSO ERROR: No usable email returned from Azure for this user'
-                  );
-                  return done(
-                    new Error('Azure did not return an email/UPN claim')
-                  );
+                  console.log('SSO ERROR: No usable email returned from Azure');
+                  return done(new Error('Azure did not return an email/UPN claim'));
                 }
-
-                const username =
-                  claims.name || claims.preferred_username || email;
-
+                
+                const username = claims.name || claims.preferred_username || email;
+                const firstname = claims.given_name || username.split(' ')[0] || 'User';
+                const lastname = claims.family_name || username.split(' ').slice(1).join(' ') || 'Name';
+                
+                console.log('=== SSO USER DATA ===');
+                console.log({ email, username, firstname, lastname });
+                
                 return done(null, {
                   email,
                   username,
+                  firstname,
+                  lastname,
                 });
               } catch (err) {
-                console.log('SSO VERIFY ERROR', err);
+                console.log('SSO VERIFY ERROR:', err);
                 return done(err);
               }
             }
