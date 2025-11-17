@@ -24,12 +24,41 @@ module.exports = ({ env }) => ({
               state: true,
             },
             (accessToken, refreshToken, params, profile, done) => {
-              const claims = jwt.decode(params.id_token);
-              const email = claims.email || claims.preferred_username || claims.upn;
-              done(null, {
-                email: email,
-                username: claims.preferred_username || claims.name || email,
-              });
+              try {
+                const claims = params?.id_token
+                  ? jwt.decode(params.id_token) || {}
+                  : {};
+
+                console.log('=== AZURE CLAIMS DUMP ===');
+                console.log(JSON.stringify(claims, null, 2));
+
+                const email =
+                  claims.email ||
+                  claims.preferred_username ||
+                  claims.upn ||
+                  claims.unique_name ||
+                  null;
+
+                if (!email) {
+                  console.log(
+                    'SSO ERROR: No usable email returned from Azure for this user'
+                  );
+                  return done(
+                    new Error('Azure did not return an email/UPN claim')
+                  );
+                }
+
+                const username =
+                  claims.name || claims.preferred_username || email;
+
+                return done(null, {
+                  email,
+                  username,
+                });
+              } catch (err) {
+                console.log('SSO VERIFY ERROR', err);
+                return done(err);
+              }
             }
           ),
       },
