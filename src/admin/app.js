@@ -173,12 +173,14 @@ const theme = {
     .ck-editor__main .ck-content img { max-width: 100%; height: auto; display: block; }
     .ck-editor__main .ck-content figure.image.image_resized img { width: 100% !important; height: auto !important; }
 
-    /* Increase font size in source editing view */
-    .ck-source-editing-area textarea {
-      font-size: 18px !important;
-      line-height: 1.6 !important;
-      font-family: "Monaco", "Menlo", "Consolas", monospace !important;
-    }
+/* Increase font size in source editing view */
+.ck-source-editing-area textarea {
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+  font-family: "Monaco", "Menlo", "Consolas", monospace !important;
+  height: 1650px !important;
+  overflow-y: auto !important;
+}
   `,
 }
 
