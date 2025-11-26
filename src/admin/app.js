@@ -30,11 +30,11 @@ export default {
         ],
 
         toolbar: [
-          'undo','redo','|','heading',
+          'sourceEditing','undo','redo','|','heading',
           '|','bold','italic','link',
           '|','bulletedList','numberedList','outdent','indent',
           '|','blockQuote','insertTable','imageUpload','strapiMediaLib',
-          '|','htmlEmbed','sourceEditing','fontFamily','|','style'
+          '|','htmlEmbed','fontFamily','|','style'
         ],
 
         // Stock heading models only. Your special look goes in the Style dropdown below.
@@ -49,51 +49,65 @@ export default {
 
         // Style plugin: add a button that applies your site class
         // Requires the `Style` plugin to be present in the build used by the @_sh preset.
-// Inside editorConfig:
-style: {
-  definitions: [
-    // Wrappers & sections
-    { name: 'Wrapper: Marketing Guide', element: 'div', classes: ['marketing-guide-wrapper'] },
-    { name: 'Section: Marketing',       element: 'div', classes: ['marketing-section'] },
+        // Inside editorConfig:
+        style: {
+          definitions: [
+            // Wrappers & sections
+            { name: 'Wrapper: Marketing Guide', element: 'div', classes: ['marketing-guide-wrapper'] },
+            { name: 'Section: Marketing',       element: 'div', classes: ['marketing-section'] },
 
-    // Typography
-    { name: 'Header: Marketing Guide',  element: 'p',   classes: ['marketing-guide-header'] },
-    { name: 'Text: Body',               element: 'p',   classes: ['marketing-guide-body'] },
-    { name: 'Text: Label',              element: 'span',classes: ['marketing-guide-label'] },
-    // Legacy alias so old content doesn’t cry
-    { name: 'Text: Label (legacy)',     element: 'span',classes: ['media-guide-label'] },
+            // Typography
+            { name: 'Header: Marketing Guide',  element: 'p',   classes: ['marketing-guide-header'] },
+            { name: 'Text: Body',               element: 'p',   classes: ['marketing-guide-body'] },
+            { name: 'Text: Label',              element: 'span',classes: ['marketing-guide-label'] },
+            // Legacy alias so old content doesn't cry
+            { name: 'Text: Label (legacy)',     element: 'span',classes: ['media-guide-label'] },
 
-    // Links
-    { name: 'Link: Marketing Link',     element: 'a',   classes: ['marketing-link'] },
+            // Links
+            { name: 'Link: Marketing Link',     element: 'a',   classes: ['marketing-link'] },
 
-    // Lists
-    { name: 'List: Bulleted',           element: 'ul',  classes: ['marketing-guide-list'] },
-    { name: 'List: Table Bullets',      element: 'ul',  classes: ['marketing-guide-list-table'] },
-    { name: 'List: Ordered Steps',      element: 'ol',  classes: ['marketing-guide-steps'] },
-    { name: 'List: No Bullets',         element: 'ul',  classes: ['no-bullets'] },
+            // Lists
+            { name: 'List: Bulleted',           element: 'ul',  classes: ['marketing-guide-list'] },
+            { name: 'List: Table Bullets',      element: 'ul',  classes: ['marketing-guide-list-table'] },
+            { name: 'List: Ordered Steps',      element: 'ol',  classes: ['marketing-guide-steps'] },
+            { name: 'List: No Bullets',         element: 'ul',  classes: ['no-bullets'] },
 
-    // Indentation utilities (apply to blocks you select)
-    { name: 'Indent: Normal',           element: 'div', classes: ['indented'] },
-    { name: 'Indent: Large',            element: 'div', classes: ['indented-lg'] },
-    { name: 'Indent: None',             element: 'div', classes: ['no-indent'] },
+            // Indentation utilities (apply to blocks you select)
+            { name: 'Indent: Normal',           element: 'div', classes: ['indented'] },
+            { name: 'Indent: Large',            element: 'div', classes: ['indented-lg'] },
+            { name: 'Indent: None',             element: 'div', classes: ['no-indent'] },
 
-    // Columns
-    { name: 'Columns: Grid',            element: 'div', classes: ['marketing-guide-columns'] },
+            // Columns
+            { name: 'Columns: Grid',            element: 'div', classes: ['marketing-guide-columns'] },
 
-    // Images
-    { name: 'Image: Standard',          element: 'img', classes: ['marketing-guide-image'] },
-    { name: 'Image: Narrow',            element: 'img', classes: ['marketing-guide-image-narrow'] },
-    { name: 'Image: Hero',              element: 'img', classes: ['marketing-guide-hero-image'] },
-    { name: 'Image: Resized (compat)',  element: 'img', classes: ['image_resized'] },
+            // Images
+            { name: 'Image: Standard',          element: 'img', classes: ['marketing-guide-image'] },
+            { name: 'Image: Narrow',            element: 'img', classes: ['marketing-guide-image-narrow'] },
+            { name: 'Image: Hero',              element: 'img', classes: ['marketing-guide-hero-image'] },
+            { name: 'Image: Resized (compat)',  element: 'img', classes: ['image_resized'] },
 
-    // Narrow container helper
-    { name: 'Container: mg-narrow',     element: 'div', classes: ['mg-narrow'] },
+            // Narrow container helper
+            { name: 'Container: mg-narrow',     element: 'div', classes: ['mg-narrow'] },
 
-    // Breadcrumb
-    { name: 'Breadcrumb',               element: 'div', classes: ['marketing-breadcrumb'] },
-  ]
-},
+            // Breadcrumb
+            { name: 'Breadcrumb',               element: 'div', classes: ['marketing-breadcrumb'] },
 
+            // Marketing Tools - Category Grid
+            { name: 'MT: Category Grid',        element: 'div', classes: ['marketing-category-grid'] },
+            { name: 'MT: Category Column',      element: 'div', classes: ['marketing-category-column'] },
+            { name: 'MT: Category Item',        element: 'div', classes: ['marketing-category-item'] },
+
+            // Marketing Tools - Headers
+            { name: 'MT: Main Header',          element: 'h1',  classes: ['marketing-tools-mainheader'] },
+            { name: 'MT: Subheader',            element: 'h2',  classes: ['marketing-tools-subheader'] },
+
+            // Marketing Tools - Text
+            { name: 'MT: Text Body',            element: 'p',   classes: ['marketing-tools-text'] },
+
+            // Marketing Tools - Button
+            { name: 'MT: Button',               element: 'a',   classes: ['marketing-tools-button'] },
+          ]
+        },
 
         // Fonts
         fontFamily: {
