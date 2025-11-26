@@ -150,35 +150,37 @@ export default {
     };
 
     // 3) Editor theme: normalize preview so bullets aren’t weird arrows, images are responsive, etc.
-    const theme = {
-      common: `
-        @import url("/bp/css/strapi.css");
+const theme = {
+  common: `
+    @import url("/bp/css/strapi.css");
 
-        :root { --ck-font-face: "Acumin Pro", sans-serif !important; }
-        .ck-editor__main { --ck-font-face: "Acumin Pro", sans-serif !important; }
+    :root { --ck-font-face: "Acumin Pro", sans-serif !important; }
+    .ck-editor__main { --ck-font-face: "Acumin Pro", sans-serif !important; }
 
-        .ck-editor__main .ck-content,
-        .ck-editor__main .ck-content * { font-family: "Acumin Pro", sans-serif !important; }
+    .ck-editor__main .ck-content,
+    .ck-editor__main .ck-content * { font-family: "Acumin Pro", sans-serif !important; }
 
-        /* Lists render as actual bullets/numbers in the editor */
-        .ck-editor__main .ck-content ul { list-style: disc; padding-left: 1.25rem; }
-        .ck-editor__main .ck-content ol { list-style: decimal; padding-left: 1.25rem; }
+    /* Lists render as actual bullets/numbers in the editor */
+    .ck-editor__main .ck-content ul { list-style: disc; padding-left: 1.25rem; }
+    .ck-editor__main .ck-content ol { list-style: decimal; padding-left: 1.25rem; }
 
-        /* Tables with breathing room */
-        .ck-editor__main .ck-content table { width: 100%; border-collapse: collapse; }
-        .ck-editor__main .ck-content th,
-        .ck-editor__main .ck-content td { border: 1px solid #e3e3e3; padding: 8px 10px; }
+    /* Tables with breathing room */
+    .ck-editor__main .ck-content table { width: 100%; border-collapse: collapse; }
+    .ck-editor__main .ck-content th,
+    .ck-editor__main .ck-content td { border: 1px solid #e3e3e3; padding: 8px 10px; }
 
-        /* Responsive images in preview */
-        .ck-editor__main .ck-content img { max-width: 100%; height: auto; display: block; }
-        .ck-editor__main .ck-content figure.image.image_resized img { width: 100% !important; height: auto !important; }
-      `,
-      additional: `
-        .ck-editor__main .ck-content h1 { font-size: 32px !important; line-height: 1.25 !important; font-weight: 700 !important; margin: 0 0 .5em !important; }
-        .ck-editor__main .ck-content h2 { font-size: 26px !important; line-height: 1.25 !important; font-weight: 700 !important; margin: 0 0 .5em !important; }
-        .ck-editor__main .ck-content h3 { font-size: 20px !important; line-height: 1.25 !important; font-weight: 700 !important; margin: 0 0 .5em !important; }
-      `
-    };
+    /* Responsive images in preview */
+    .ck-editor__main .ck-content img { max-width: 100%; height: auto; display: block; }
+    .ck-editor__main .ck-content figure.image.image_resized img { width: 100% !important; height: auto !important; }
+
+    /* Increase font size in source editing view */
+    .ck-source-editing-area textarea {
+      font-size: 18px !important;
+      line-height: 1.6 !important;
+      font-family: "Monaco", "Menlo", "Consolas", monospace !important;
+    }
+  `,
+}
 
     // 4) Let your site CSS be the source of truth. Don’t double-style via defaultHtmlPreset.
     defaultHtmlPreset.styles = ``;
